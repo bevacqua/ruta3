@@ -1,0 +1,11 @@
+{
+  "name": "ruta3",
+  "description": "Route matcher devised for shared rendering JavaScript applications",
+  "version": "0.0.1",
+  "homepage": "https://github.com/bevacqua/ruta3",
+  "repository": "https://github.com/bevacqua/ruta3.git",
+  "author": "Nicolas Bevacqua <nicolasbevacqua@gmail.com> (http://github.com/bevacqua)",
+  "scripts": {
+    "test": "node test/test && node test/next"
+  }
+}
