@@ -34,8 +34,8 @@ router.match('/articles');
 You'll get `null` back if no route matches the provided URL. Otherwise, the route match will provide all the useful information you need inside an object.
 
 Key               | Description
-------------------|------------------------------------------------------------------
-`fn`              | The function passed to `addRoute` as a second argument
+------------------|---------------------------------------------------------------------------------------
+`action`          | The action passed to `addRoute` as a second argument. Using a function is recommended
 `next`            | Fall through to the next route, or `null` if no other routes match
 `route`           | The route passed to `addRoute` as the first argument
 `params`          | An object containing the values for named parameters in the route

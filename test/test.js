@@ -18,12 +18,12 @@ var cases = [
     path: '/lang',
     testMatch: {
       '/lang' :{
-        fn: noop,
+        action: noop,
         params: {},
         splats: []
       },
       '/lang/' :{
-        fn: noop,
+        action: noop,
         params: {},
         splats: []
       }
@@ -33,7 +33,7 @@ var cases = [
     path: '/lang/:lang([a-z]{2})',
     testMatch :{
       '/lang/de':{
-        fn: noop,
+        action: noop,
         params: {
           'lang':'de'
         },
@@ -46,7 +46,7 @@ var cases = [
     path: '/normal/:id',
     testMatch: {
       '/normal/1':{
-        fn: noop,
+        action: noop,
         params: {
           id: '1'
         },
@@ -59,14 +59,14 @@ var cases = [
     path: '/optional/:id?',
     testMatch: {
       '/optional/1':{
-        fn: noop,
+        action: noop,
         params: {
           id: '1'
         },
         splats: []
       },
       '/optional/':{
-        fn: noop,
+        action: noop,
         params: {
           id: undefined
         },
@@ -79,7 +79,7 @@ var cases = [
     path: '/empty/*',
      testMatch: {
         '/empty/':{
-          fn: noop,
+          action: noop,
           params: { },
           splats:[''],
         }
@@ -90,7 +90,7 @@ var cases = [
     path: '/whatever/*.*',
      testMatch: {
         '/whatever/1/2/3.js':{
-          fn: noop,
+          action: noop,
           params: { },
           splats:['1/2/3', 'js'],
         }
@@ -101,12 +101,12 @@ var cases = [
     path: '/files/*.*',
     testMatch: {
       '/files/hi.json':{
-        fn: noop,
+        action: noop,
         params: {},
         splats: ['hi', 'json']
       },
       '/files/blah/blah.js':{
-        fn: noop,
+        action: noop,
         params: {},
         splats: ['blah/blah', 'js']
       }
@@ -117,7 +117,7 @@ var cases = [
     path: '/transitive/:kind/:id/:method?.:format?',
     testMatch: {
       '/transitive/users/ekjnekjnfkej':  {
-        fn: noop,
+        action: noop,
         params: {
           'kind':'users',
           'id':'ekjnekjnfkej',
@@ -126,7 +126,7 @@ var cases = [
         splats:[],
       },
       '/transitive/users/ekjnekjnfkej/update': {
-        fn: noop,
+        action: noop,
         params: {
           'kind':'users',
           'id':'ekjnekjnfkej',
@@ -135,7 +135,7 @@ var cases = [
         splats:[],
       },
       '/transitive/users/ekjnekjnfkej/update.json': {
-        fn: noop,
+        action: noop,
         params: {
           'kind':'users',
           'id':'ekjnekjnfkej',
@@ -150,7 +150,7 @@ var cases = [
     path: /^\/(\d{2,3}-\d{2,3}-\d{4})\.(\w*)$/,
     testMatch :{
       '/123-22-1234.json':{
-        fn: noop,
+        action: noop,
         params: {},
         splats:['123-22-1234', 'json']
       }
@@ -161,7 +161,7 @@ var cases = [
     path: '/cat/*',
     testMatch: {
       '/cat/%' :{
-        fn: noop,
+        action: noop,
         params: {},
         splats: ['%']
       }
@@ -171,7 +171,7 @@ var cases = [
     path: '*://*example.com/:foo/*/:bar',
     testMatch: {
       'http://www.example.com/the/best/test' :{
-        fn: noop,
+        action: noop,
         params: {
           'foo':'the',
           'bar':'test'
@@ -184,7 +184,7 @@ var cases = [
     path: '*://*example.com/:foo/*/:bar',
     testMatch: {
       'http://example.com/the/best/test' :{
-        fn: noop,
+        action: noop,
         params: {
           'foo':'the',
           'bar':'test'
@@ -240,8 +240,8 @@ assert.throws(
   function() {
     router.addRoute('/');
   }
-  , /route \/ requires a callback/
-  , 'expected "route requries a callback" error'
+  , /route \/ requires an action/
+  , 'expected "route requires an action" error'
 );
 
 assertCount++;

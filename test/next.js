@@ -16,11 +16,11 @@ var server = http.createServer(function (req, res) {
   function wrapNext(next) {
     return function() {
       var match = next()
-      match.fn(req, res, wrapNext(match.next))
+      match.action(req, res, wrapNext(match.next))
     }
   }
 
-  match.fn(req, res, wrapNext(match.next))
+  match.action(req, res, wrapNext(match.next))
 
 }).listen(1337, runTests)
 

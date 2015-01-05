@@ -65,24 +65,24 @@ function Router () {
   this.routeMap = [];
 }
 
-Router.prototype.addRoute = function (path, fn) {
+Router.prototype.addRoute = function (path, action) {
   if (!path) {
     throw new Error(' route requires a path');
   }
-  if (!fn) {
-    throw new Error(' route ' + path.toString() + ' requires a callback');
+  if (!action) {
+    throw new Error(' route ' + path.toString() + ' requires an action');
   }
 
   var route = routeInfo(path, this.routeMap.length);
-  route.fn = fn;
+  route.action = action;
   this.routes.push(route);
-  this.routeMap.push([path, fn]);
+  this.routeMap.push([path, action]);
 }
 
 Router.prototype.match = function (uri, startAt) {
   var route = match(this.routes, uri, startAt);
   if (route) {
-    route.fn = this.routeMap[route.index][1];
+    route.action = this.routeMap[route.index][1];
     route.next = this.match.bind(this, uri, route.next);
   }
   return route;
