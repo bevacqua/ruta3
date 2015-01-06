@@ -33,6 +33,8 @@ function match (routes, uri, startAt) {
       };
     }
   }
+
+  return null;
 }
 
 function routeInfo (path, index) {
