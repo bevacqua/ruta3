@@ -24,7 +24,9 @@ function pathToRegExp (path, keys) {
       + (optional ? '' : slash)
       + '(?:'
       + (optional ? slash : '')
-      + (format || '') + (capture || '([^/]+?)') + ')'
+      + (format || '')
+      + (capture ? capture.replace(/\*/g, '{0,}').replace(/\./g, '[\\s\\S]') : '([^/]+?)')
+      + ')'
       + (optional || '');
   }
 }
