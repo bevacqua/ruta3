@@ -15,7 +15,7 @@ function match (routes, uri, startAt) {
 
     if (captures = uri.match(re)) {
       for (var j = 1, len = captures.length; j < len; ++j) {
-        var value = typeof captures[j] === 'string' ? unescape(captures[j]) : captures[j];
+        var value = typeof captures[j] === 'string' ? decodeURIComponent(captures[j]) : captures[j];
         var key = keys[j - 1];
         if (key) {
           params[key] = value;
